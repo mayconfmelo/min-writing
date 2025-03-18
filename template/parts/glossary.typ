@@ -1,4 +1,4 @@
-#import "@preview/min-writing:0.1.0": glossary
+#import "@preview/min-writing:0.0.9": glossary
 
 #rect[
   This document import only the glossary-related features of _min-manual_. This

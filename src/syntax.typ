@@ -133,7 +133,7 @@
  * mode is set, `#pagebreak` works as default.
  * 
  * ```typm
- * #import "@preview/min-writing:0.1.0": writing, pagebreak
+ * #import "@preview/min-writing:0.0.9": writing, pagebreak
  * ```
  * 
  * To use it, just import the `pagebreak` command alongside `writing` from as
