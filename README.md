@@ -26,7 +26,9 @@ Simple and basic general purpose writings.
 Generate everyday texts, writings, and anotations that can be confortably read
 in smartphone screens, bigger screens, or printed paper.  This package also
 provides some useful tools and helpers that simplify the writing process, to
-make it easier and faster.
+make it easier and faster. The features can work in a all-parts-detachable way:
+you can import each feature separately and use only whatever is useful at the
+moment instead of everything that the package offers.
 
 
 ## More Information

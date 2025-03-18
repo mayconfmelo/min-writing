@@ -28,7 +28,7 @@
  * provides some useful tools and helpers that simplify the writing process, to
  * make it easier and faster. The features can work in a all-parts-detachable way:
  * you can import each feature separately and use only whatever is useful at the
- * moment instead of everything that tue package offers.
+ * moment instead of everything that the package offers.
  * 
  * This manual will be updated only when new versions break or modify something;
  * otherwise, it will be valid to all newer versions starting by the one documented
