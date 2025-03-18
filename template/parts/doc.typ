@@ -1,5 +1,5 @@
 // Import documentation-related features
-#import "@preview/min-writing:0.0.9": doc
+#import "@preview/min-writing:0.1.0": doc
 
 #rect[
   This document import only the documentation-related features of _min-manual_. This

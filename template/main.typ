@@ -1,4 +1,4 @@
-#import "@preview/min-writing:0.0.9": writing, pagebreak, glossary, syntax, doc
+#import "@preview/min-writing:0.1.0": writing, pagebreak, glossary, syntax, doc
 
 #show: writing.with(  
 	title: "Main Title",

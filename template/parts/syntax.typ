@@ -1,4 +1,4 @@
-#import "@preview/min-writing:0.0.9": syntax
+#import "@preview/min-writing:0.1.0": syntax
 
 #set heading(numbering: "1.1.1.1.1 ")
 
