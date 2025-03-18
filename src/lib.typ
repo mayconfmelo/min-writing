@@ -1,7 +1,9 @@
 // NAME: Minimal Writings
-// REQ: min-manual:0.1.0 (documentation)
-// TODO: Make markup more similar to markdown.
-// TODO: Separate each standalone feature in its own submodule.
+// INFO: This package provides embedded doc-comments used by min-manual.
+
+#import "doc.typ"
+#import "glossary.typ"
+#import "syntax.typ"
 
 /**
  * = Quick Start
@@ -35,20 +37,9 @@
  * #pagebreak()
 **/
 
-#let writing-glossary-state = state("glossary-state", (:))
+// Nullifies page breaks in "mobile" amd "screen" modes
+#let pagebreak = syntax.pagebreak
 
-// Original `pagebreak` command
-#let pagebreak-origin = pagebreak
-
-// Shadows `pagebreak` to nullify it in "mobile" and "screen" modes
-#let pagebreak(..args) = context {
-  if page.height == auto {
-    []
-  }
-  else {
-    pagebreak-origin(..args)
-  }
-}
 
 /** 
  * = Options
@@ -174,6 +165,7 @@
   set terms(separator: [: ], tight: true)
   set heading(numbering: "1.1.1.1.1 ")
   
+  // Mode-aware configurations
   let text-args = (:)
   let page-args = (:)
   let table-stroke = black
@@ -251,13 +243,7 @@
   show regex("^\|=+.*$"): it => {
     // Enable |= unnumbered heading markup:
     if unnumbered-heading-markup == true {
-      let level = it.text.find(regex("=+"))
-      let title = it.text.replace(regex("^\|=+\s*"), "")
-      
-      heading(
-        level : level.len(),
-        numbering: none,
-      )[#title]
+      syntax.unnum-headings(it)
     }
     else {
       it
@@ -332,476 +318,27 @@
   body
   
   // Glossary
-  context if writing-glossary-state.final() != (:) {
+  context if glossary.writing-glossary-state.final() != (:) {
     pagebreak(weak: true)
     
-    // Glossary title
-    heading(
-      level: 1,
-      numbering: none,
-      glossary-title
-    )
-    
-    let final-glossary-state = writing-glossary-state.final()
-    
-    for entry in final-glossary-state.keys().sorted() {
-      let value = final-glossary-state.at(entry)
-      
-      // abbreviations with long name and definition too:
-      if type(value) == array {
-        if value.at(1) == none {
-          entry = upper(entry)
-          value = value.at(0)
-        }
-        else {
-          entry = value.at(0) + " (" + upper(entry) + ")"
-          value = value.at(1)
-        }
-      }
-      else {
-        // Try to capitalize first letter
-        entry = upper(entry.first()) + entry.slice(1)
-      }
-      
-      set terms(separator: [:#linebreak()], tight: true)
-      
-      block(breakable: false)[
-        #terms.item(entry, value)
-      ]
-    }
-  }
-}
-
-
-/** 
- * = Pagebreak Command
- *
- * :pagebreak:
- *
- * This is a wrapper that shadows the default `#pagebreak()`, to nullify it in
- * `mobile` and `screen` modes --- otherwise the document will be printed only until
- * the first `#pagebreak()`.
-**/
-
-
-/**
- * = Abbreviations command
- *
- * :abbrev:
- *
- * This command manages abbreviations this way: The first time it is used, will
- * print the full long name, and its abbreviation between parenthesis; from then
- * on, when is used again with the same abbreviation, it will print just the
- * abbreviation. Additionally, every new abbreviation is collected to be used in
- * a glossary automatically generated, along with a optional longer definition
- * of the abbreviation and its long name.
-**/
-#let abbrev(
-  abbreviation,
-    /** <- string | content <required>
-      * The abbreviation itself. Does not support stylization or quotes. Lowercase
-      * letters are automatically uppercased. **/
-  ..definitions
-    /** <- arguments
-      * Receives two positional arguments: a `LONG` full name of the abbreviation,
-      * and an optional short `DEFINITION` to be used in the glossary.
-      * #parbreak()
-      * When no `DEFINITION` is set, `LONG` is used as the `DEFINITION`. **/
-) = context {
-  let current-glossary-state = writing-glossary-state.get()
-  let abbrev
-  
-  // Get abbrev from content or string
-  if type(abbreviation) == content {
-    if abbreviation.at("children", default: none) == none {
-      abbrev = abbreviation.text
-    }
-    else {
-      panic("Abbreviation is not plain text: " repr(abbreviation))
-    }
-  }
-  else {
-    abbrev = abbreviation
-  }
-  
-  // Checks if this abbrev was already used before
-  if current-glossary-state.at(abbrev, default: none) != none {
-    [#upper(abbrev)]
-  }
-  else {
-    /**
-     * The `..definitions` is an argument sink that makes it possible to get
-     * optional positional arguments. This way you can use `#abbrev` either way:
-     * 
-     * ```typm
-     * #abbrev[idk][I do not know]
-     * ```
-     * or else
-     * ```typm
-     * #abbrev[idk][I do not know][
-     *   Response to a question whose answer is unknown to you.
-     * ]
-     * ```
-    **/
-  
-  
-    let long = definitions.pos().at(0, default: none)
-    
-    if long == none {
-      panic("No long name provided by " + abbrev)
-    }
-    
-    let definition
-    
-    if definitions.pos().len() >= 2 {
-      definition = definitions.pos().at(1)
-      
-      current-glossary-state.insert(abbrev, (long, definition))
-    }
-    else {
-      current-glossary-state.insert(abbrev, (long, none))
-    }
-    
-    writing-glossary-state.update(current-glossary-state)
-    
-    [#long (#upper(abbrev))]
+    glossary.insert-glossary(title: glossary-title)
   }
 }
 
 
 /**
- * = Glossary Term Command
- *
- * :gloss:
- * 
- * This commands works alongside `#abbrev` collecting terms for a automatically
- * generated glossary. While `abbrev` only collects abbreviations, `gloss` can
- * collect any word or expression. It just retrieves the data and then prints the
- * term in the place where the command is writen; later, the `article` command use
- * this data to generate a automatic glossary after the main text body, as the.
- * If no data is collected by neither `gloss` nor `abbrev`, no glossary is
- * generated.
-**/
-#let gloss(
-  term-name,
-    /** <- string | content <required>
-      * The name of the term in the glossary; it is what will be defined. If the
-      * name have any fancy characters like apostrophes or quotes, is recommended
-      * to use a string instead of content. **/
-  definition
-    /** <- string | content <required>
-      * The definution of `term-name`; a brief text that describes and explains it. **/
-) = context {
-  let current-glossary-state = writing-glossary-state.get()
-  let term
-  
-  if type(term-name) == content {
-    term = term-name.text
-  }
-  else {
-    term = term-name
-  }
-  
-  if current-glossary-state.at(term, default: none) == none {
-    current-glossary-state.insert(term, definition)
-  }
-  writing-glossary-state.update(current-glossary-state)
-  
-  [#term]
-}
-
-
-// Enables glossary generation (show)
-// TODO: Test if #glossary works
-// TODOC: write doc-comments if #glossary it works
-#let glossary(
-  title: "Glossary",
-  body
-) = {
-  body
-
-  pagebreak(weak: true)
-    
-  // Glossary title
-  heading(
-    level: 1,
-    numbering: none,
-    title
-  )
-  
-  let final-glossary-state = writing-glossary-state.final()
-  
-  for entry in final-glossary-state.keys().sorted() {
-    let value = final-glossary-state.at(entry)
-    
-    // abbreviations with long name and definition too:
-    if type(value) == array {
-      if value.at(1) == none {
-        entry = upper(entry)
-        value = value.at(0)
-      }
-      else {
-        entry = value.at(0) + " (" + upper(entry) + ")"
-        value = value.at(1)
-      }
-    }
-    else {
-      // Try to capitalize first letter
-      entry = upper(entry.first()) + entry.slice(1)
-    }
-    
-    set terms(separator: [:#linebreak()], tight: true)
-    
-    block(breakable: false)[
-      #terms.item(entry, value)
-    ]
-  }
-}
-
-
-/** #pagebreak()
- * 
- * = Horizontal Rule Command
- * 
- * :horizontalrule:
- * 
- * Adds horizontal rules, used to separate suble changes of subject in book texts.
- * Can be called by its name or its alias `#hr`.
- * 
-**/
-#let horizontalrule(
-  symbol: [#sym.ast.op #sym.ast.op #sym.ast.op],
-    /** <- content
-      * Defines the content at the center of the horizontal rule. By default,
-      * the line is struck by three #sym.ast.op in its center. **/
-  spacing: 1em,
-    /** <- length
-      * Defines the vertical space before and after the horizontal rule. **/
-  line-size: 15%,
-    /** <- length
-      * Defines the size of the horizontal rule line. **/
-) = context [
-  #let line-fill = if page.height == auto {
-    white
-  } else {
-    black
-  }
-
-  #v(spacing, weak: true)
-  #align(center)[
-  #block(width: 100%)[
-    #box(height: 1em,
-      align(center+horizon)[#line(length: line-size, stroke: line-fill)]
-    )
-    #box(height: 1em)[#symbol]
-    #box(height: 1em,
-      align(center+horizon)[#line(length: line-size, stroke: line-fill)]
-    )
-  ]
-  ]
-  #v(spacing, weak: true)
-]
-
-// Alias for creating a visial text separator
-#let hr = horizontalrule
-
-
-/**
- * = Blockquote Command
- * 
- * :blockquote:
- * 
- * Adds a block version of the `quote` command. In fact, it is just a simple
- * wrapper of ```typc quote(block: true)``` with some minor modifications. The
- * `by` argument is an alias for the original `attribution` argument, so that a
- * blockquote can be written:
+ * = Detachable Parts
  * 
  * ```typm
- * #blockquote(by: "Einstein")[
- *   Don't believe everithing you read on the internet.
- * ]
- * ```
-**/
-#let blockquote(by: none, ..args) = quote(block: true, attribution: by, ..args)
-
-
-/**
- * = Argument Command
- * 
- * :arg:
- * 
- * This command offers a convenient way to document the arguments --- or parameters,
- * or options, or whatever they are called; and even structures can be easily
- * explained.
-**/
-#let arg(
-  title,
-    /** <- string
-      *  Defines the argument `NAME`, `TYPE`s, and if it is `REQUIRED` using the 
-      * following syntaxes:
-      * #parbreak()
-      * #align(center)[
-      *   `"NAME <- TYPE | TYPE | TYPE <REQUIRED>"`
-      *   #line(length: 60%, stroke: luma(220))
-      *   `"NAME -> TYPE | TYPE | TYPE"`
-      * ]
-      * The name can be #raw("```LANG NAME```") to get syntax highlight. The
-      * `<-` arrow indicates that `NAME` receives any of the value `TYPE`s, and
-      * `->` indicates that `NAME` returns one of the value `TYPE`s. A special
-      * `nothing` type is used when nothing is received and/or returned. For
-      * optional arguments, just don't write the `<REQUIRED>`. **/
-  body
-    /** <- content | string
-      * A brief description of what the argument does. **/
-) = {
-  let name
-  let output = false
-  let types = none
-  let required = title.contains("<required>")
-  
-  // Adapt types fill color to page color
-  let type-fill = if page.height == auto {
-    luma(20)
-  } else {
-    luma(235)
-  }
-  
-  // Remove any <required> in title:
-  if required != none {
-    title = title.replace("<required>", "")
-  }
-  
-  let arrow = title.match(regex("<-|->")).text
-  
-  if arrow == "->" {
-    output = true
-  }
-  
-  // split NAME <- TYPES or NAME -> TYPES
-  let parts = title.split(arrow)
-  
-  name = parts.at(0).trim()
-  
-  if name == "" {
-    panic("Argument name required: " + title)
-  }
-  
-  // Set types, if any
-  if parts.len() > 1 {
-    types = parts.at(1)
-      .replace(regex("\s*\|\s*"), "|")
-      .trim()
-      
-    // If TYPES is "nothing", maintain types = none
-    if types == "nothing" {
-      types = none
-    }
-    else {
-      types = types.split("|")
-    }
-  }
-  
-  // Eval ```LANG name``` to become raw
-   if name.contains(regex("```.*```")) {
-     name = eval(name, mode: "markup")
-  }
-
-  v(0.5em)
-  block(breakable: false)[
-    #par(
-      spacing: 0.9em,
-      leading: 0.65em,
-    )[
-      #strong[
-        // If the name is string, show as raw.
-        // If the name is raw, show it as it is.
-        #if type(name) == str {
-          raw(name)
-        } else {
-          name
-          h(1em)
-        }
-      ]
-      #if types != none {
-        // Show arrow when documenting output
-        if output == true {
-          sym.arrow.r
-          h(0.5em)
-        }
-      
-        // Turn string types into array:
-        if type(types) == str {
-          types = (types,)
-        }
-        for type in types {
-          box(
-            fill: type-fill,
-            inset: (x: 3pt, y: 0pt),
-            outset: (y: 3pt),
-            type.trim()
-          ) + " "
-        }
-        
-      }
-      // Insert required note
-      #if required == true {
-        box(width: 1fr)[
-          #align(right)[ (_required_) ]
-        ]
-      }
-      #linebreak()
-      #if body != [] {
-        // Show padded text:
-        pad(left: 1em)[#body]
-      }
-    ]
-  ]
-}
-
-/**
- * = Unnumbered Headings Command
- * 
- * :unnum-headings: show
- * 
- * Activates only the unnumbered headings syntax, without the need to use
- * `#writing` and all its other features included. By importing and using this
- * command, you can write unnumbered headinds using a special syntax:
- * 
- * ```typm
- * #show: unnum-headings
- * 
- * |= This is a unnumbered level 1 heading
- * |== This is a unnumbered level 2 heading
+ * #import "@preview/min-writing:0.1.0": doc, glossary, syntax
+ * #import doc: *
+ * #import glossary: *
+ * #import syntax: *
  * ```
  * 
+ * To conveniently allow the use of separate features of _min-writing_, each set
+ * of commands are grouped in sub-modules by area: `doc`umentation commands,
+ * `glossary` commands, and `syntax` commands.
 **/
-#let unnum-headings(body) = {
-  show regex("^\|=+.*$"): it => {
-    // Enable |= unnumbered heading markup:
-    if unnumbered-heading-markup == true {
-      let level = it.text.find(regex("=+"))
-      let title = it.text.replace(regex("^\|=+\s*"), "")
-      
-      heading(
-        level : level.len(),
-        numbering: none,
-      )[#title]
-    }
-    else {
-      it
-    }
-  }
-  
-  body
-}
 
 
-/**
- * = Copyright
- * 
- * Copyright #sym.copyright #datetime.today().year() Maycon F. Melo. \
- * This manual is licensed under MIT. \
- * The manual source code is free software:
- * you are free to change and redistribute it.  There is NO WARRANTY, to the
- * extent permitted by law.
-**/

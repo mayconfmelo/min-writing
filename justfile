@@ -23,6 +23,9 @@ pdf:
   bash scripts/package.sh check "" "{{root}}"
   typst c "manual.typ" "dev/manual.pdf"
   typst c "template/main.typ" "dev/example.pdf"
+  typst c "template/parts/doc.typ" "dev/doc.pdf"
+  typst c "template/parts/glossary.typ" "dev/glossary.pdf"
+  typst c "template/parts/syntax.typ" "dev/syntax.pdf"
 
 # Generate documentation as PNGs in dev/png/
 png:
@@ -31,6 +34,9 @@ png:
   bash scripts/package.sh check "" "{{root}}"
   typst c "manual.typ" "dev/png/manual-{0p}.png"
   typst c "template/main.typ" "dev/png/example-{0p}.png"
+  typst c "template/parts/doc.typ" "dev/png/doc-{0p}.png"
+  typst c "template/parts/glossary.typ" "dev/png/glossary-{0p}.png"
+  typst c "template/parts/syntax.typ" "dev/png/syntax-{0p}.png"
 
 # Toggle symlink this project to "local" namespace under 0.0.0 version.
 dev-link:

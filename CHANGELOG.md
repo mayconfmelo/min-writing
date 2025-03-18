@@ -10,5 +10,5 @@
 - Horizontal rules (visual text separators)
 - `#blockquote`, a wrapper for `#quote(block: true)`
 - Easy way to document command arguments/options/parameters with `#arg`
-- All-parts-detachable philosophy: each single feature can also be imported
-  sepparatedly and used on its own
+- All-parts-detachable philosophy: each feature can also be imported sepparatedly
+  and used on its own

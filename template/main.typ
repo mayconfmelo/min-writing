@@ -1,7 +1,4 @@
-#import "@preview/min-writing:0.1.0": (
-  writing, pagebreak, abbrev, gloss,
-  horizontalrule, hr, blockquote, arg
-)
+#import "@preview/min-writing:0.1.0": writing, pagebreak, glossary, syntax, doc
 
 #show: writing.with(  
 	title: "Main Title",
@@ -90,6 +87,51 @@ Inline math: $sum_0^10$. #lorem(21)
 #lorem(24)
 
 
+// Enables documentation-related features:
+#import doc: arg, univ, pip, crate, pkg
+
+= Argument Command
+
+```typm
+#set feature(
+  arg,
+  arg
+)
+```
+
+#arg("```typm set feature()``` -> nothing")[
+  Explanation of what is this structure, what it does, and how to set it.
+]
+
+#arg("```typm #show: feature.with()``` -> string | content")[
+  Explanation of what is this structure, what it does, and how to set it.
+]
+
+#arg("```typm #feature()``` -> string | content")[
+  Explanation of what is this structure, what it does, and how to set it.
+]
+
+#arg("arg: <- string | content <required>")[
+  Explanation of what is this argument, what it does, and how to set it.
+]
+
+#arg("arg: <- string | content <required>")[
+  Explanation of what is this argument, what it does, and how to set it.
+]
+
+
+= Dependencies
+
+Requires the #univ("example") Typst package. To setup the project you will need
+the #pip("fictional") Python module, or the #crate("nonexistent") crate. If this
+package does not work, just go back to LaTeX and use
+#pkg("alternative", "https://ctan.org/pkg/") instead, or delve into Regex and
+one-liners with the #pkg("OG::Solution", "https://metacpan.org/pod/") Perl module.
+
+
+// Enables glossary-related features:
+#import glossary: abbrev, gloss, insert-glossary
+
 = Glossary and abbreviations
 
 Abbreviations with definitions are automatically included in the glossary:
@@ -107,8 +149,18 @@ have this someone or something back.]
 As to abbreviations, if the same abbreviation is used again it will be
 automatically retrieved: #abbrev[abnt]
 
+#rect[
+  The _min-writing_ automatically generates a glossary at tue end of tje document,
+  but this one below is a copy manually inserted here:
+  
+  #insert-glossary()
+]
+
 #pagebreak()
 
+
+// Enables syntax-related features:
+#import syntax: horizontalrule, hr, blockquote
 
 = Horizontal Rule Command
 
@@ -128,19 +180,3 @@ automatically retrieved: #abbrev[abnt]
   Don't believe everything you read on the internet.
 ]
 
-
-= Argument Command
-
-#arg(
-  "name:", ("string", "content"),
-  required: true
-)[
-  Explanation of what is this argument, what it does, and how to set it.
-]
-
-#arg(
-  "author:", ("string", "content"),
-  required: true
-)[
-  Explanation of what is this argument, what it does, and how to set it.
-]
