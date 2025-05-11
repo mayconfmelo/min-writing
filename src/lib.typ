@@ -10,7 +10,7 @@
  * = Quick Start
  * 
  * ```typ
- * #import "@preview/min-writing:0.1.0": writing, pagebreak
+ * #import "@preview/min-writing:0.1.1": writing, pagebreak
  * #show: writing.with(  
  *   title: "Main Title",
  *   subtitle: "Subtitle, generally two lines long or less",
@@ -331,7 +331,7 @@
  * = Detachable Parts
  * 
  * ```typm
- * #import "@preview/min-writing:0.1.0": doc, glossary, syntax
+ * #import "@preview/min-writing:0.1.1": doc, glossary, syntax
  * #import doc: *
  * #import glossary: *
  * #import syntax: *

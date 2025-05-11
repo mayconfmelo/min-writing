@@ -33,8 +33,8 @@ moment instead of everything that the package offers.
 
 ## More Information
 
-- [Official manual](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/manual.pdf)
-- [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/example.pdf)
-- [Example Typst code](https://github.com/mayconfmelo/min-writing/blob/0.1.0/template/main.typ)
-- [Example of standalone features usage](https://github.com/mayconfmelo/min-writing/blob/0.1.0/template/parts/)
+- [Official manual](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.1/docs/manual.pdf)
+- [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.1/docs/example.pdf)
+- [Example Typst code](https://github.com/mayconfmelo/min-writing/blob/0.1.1/template/main.typ)
+- [Example of standalone features usage](https://github.com/mayconfmelo/min-writing/blob/0.1.1/template/parts/)
 - [Changelog](https://github.com/mayconfmelo/min-writing/blob/main/CHANGELOG.md)
