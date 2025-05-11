@@ -1,5 +1,6 @@
 // NAME: Minimal Writings
 // INFO: This package provides embedded doc-comments used by min-manual.
+// TODO: Implement web writing/post (HTML) when stable
 
 #import "doc.typ"
 #import "glossary.typ"

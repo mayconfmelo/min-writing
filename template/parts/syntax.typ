@@ -64,33 +64,3 @@ Example in the next page:
   There is a pagebreak, believe it or not.
 ]
 
-
-= Markdown-ish Syntax
-#sym.ballot.cross
-
-#import syntax: markdown-ish
-#show: markdown-ish.with()
-
-
-> Citation
->> Nested citation
-
-https://example.com
-[Link](https://example.com)
-
-![Image](https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
-
-- [x] Tarefa concluída
-- [ ] Tarefa pendente
-- Foo
-
------
-
-> Note: Isso é uma nota.
-
-> Warning: Isso é um aviso.
-
-> Tip: Isso é uma dica.
-
-{center}[Content]
-

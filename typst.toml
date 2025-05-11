@@ -14,15 +14,16 @@ exclude = [
   "docs/",
   "scripts/",
   ".git",
+  ".todo",
   ".gitignore",
   "justfile",
   "CHANGELOG.md",
   "SETUP.md",
   "manual.typ"
+path = "template"
 ]
 
 
 [template]
-path = "template"
 entrypoint = "main.typ"
 thumbnail = "thumbnail.png"
