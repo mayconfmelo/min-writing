@@ -6,7 +6,7 @@ authors = ["Maycon F. Melo <@mayconfmelo>"]
 license = "MIT-0"
 description = "Simple and basic general purpose writings"
 categories = [ "layout", "office" ]
-keywords = [ "quick writing", "note", "anotation" ]
+keywords = [ "quick writing", "note", "anotation", "mobile" ]
 repository = "https://github.com/mayconfmelo/min-writing"
 exclude = [
   "dev/",
