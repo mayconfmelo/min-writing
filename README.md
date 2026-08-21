@@ -1,40 +1,48 @@
 # Minimal Writings
 
-<center>
-Simple and basic general purpose writings.
-</center>
+<div align="center">
+
+<p class="hidden">
+  Simple and basic general purpose anotations 
+</p>
+
+<p class="hidden">
+  <a href="https://typst.app/universe/package/min-writing">
+    <img alt="Typst Universe version" src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Ftypst.app%2Funiverse%2Fpackage%2Fmin-writing&query=%2Fhtml%2Fbody%2Fdiv%2Fmain%2Fdiv%5B2%5D%2Faside%2Fsection%5B2%5D%2Fdl%2Fdd%5B3%5D&logo=typst&label=Universe&color=%23239DAE&labelColor=%23353c44" /></a>
+  <a href="https://github.com/mayconfmelo/min-writing/tree/dev/">
+    <img alt="GitHub development branch version" src="https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmayconfmelo%2Fmin-writing%2Frefs%2Fheads%2Fdev%2Ftypst.toml&query=%24.package.version&logo=github&label=Development&logoColor=%2397978e&color=%23239DAE&labelColor=%23353c44" /></a>
+</p>
+
+[![Get Manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/manual.pdf)
+[![Example PDF](https://img.shields.io/badge/Example-.pdf-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/example.pdf)
+[![Example source code](https://img.shields.io/badge/Example-.typ-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/min-writing/blob/0.1.0/template/main.typ)
+[![Changelog file](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/changelog.md)
+[![Contribute with development](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/contributing.md)
+
+<p class="hidden">
+  <a href="https://github.com/mayconfmelo/min-writing/actions/workflows/tests.yml">
+    <img alt ="General tests badge" src="https://github.com/mayconfmelo/min-writing/actions/workflows/tests.yml/badge.svg"></a>
+  <a href="https://github.com/mayconfmelo/min-writing/actions/workflows/build.yml">
+    <img alt="Build test badge" src="https://github.com/mayconfmelo/min-writing/actions/workflows/build.yml/badge.svg"></a>
+  <a href="https://github.com/mayconfmelo/min-writing/actions/workflows/spellcheck.yml">
+    <img alt ="Spellcheck test badge" src="https://github.com/mayconfmelo/min-writing/actions/workflows/spellcheck.yml/badge.svg"></a>
+</p>
+</div>
 
 
 ## Quick Start
 
 ```typst
-#import "@preview/min-writing:0.1.0": writing, pagebreak
-#show: writing.with(  
-  title: "Main Title",
-  subtitle: "Complementary subtitle, generally two lines long or less",
-  authors: (
-    "Text Author <mailto:author@email.com>",
-    "Collaborator <https://collab.site.com>"
-  ),
-  mode: "mobile",
-)
+#import "@preview/min-writing:0.1.0": book
 ```
 
 
 ## Description
 
-Generate everyday texts, writings, and anotations that can be confortably read
-in smartphone screens, bigger screens, or printed paper.  This package also
-provides some useful tools and helpers that simplify the writing process, to
-make it easier and faster. The features can work in a all-parts-detachable way:
-you can import each feature separately and use only whatever is useful at the
-moment instead of everything that the package offers.
+
+## Feature List
 
 
-## More Information
 
-- [Official manual](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/manual.pdf)
-- [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/example.pdf)
-- [Example Typst code](https://github.com/mayconfmelo/min-writing/blob/0.1.0/template/main.typ)
-- [Example of standalone features usage](https://github.com/mayconfmelo/min-writing/blob/0.1.0/template/parts/)
-- [Changelog](https://github.com/mayconfmelo/min-writing/blob/main/CHANGELOG.md)
+## Default Fonts
+

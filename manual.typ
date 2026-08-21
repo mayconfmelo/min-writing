@@ -1,24 +1,12 @@
-// NAME: Minimal Writings Manual
-// REQ: min-manual
-
-#import "@preview/min-manual:0.1.1": manual
+#import "@preview/min-manual:0.3.0": manual
 
 #show: manual.with(
-  title: "Minimal Writings",
-  description: "Simple and basic general purpose writings",
-  authors: "Maycon F. Melo <https://github.com/mayconfmelo>",
-  cmd: "min-writing",
-  version: "0.1.0",
-  license: "MIT",
+  title: "Mininal Writings",
   logo: image("docs/assets/manual-logo.png"),
-  from-comments:
-    read("src/lib.typ") +
-    read("src/doc.typ") +
-    read("src/glossary.typ") +
-    read("src/syntax.typ")
+  manifest: toml("typst.toml"),
+  from-comments: read("src/lib.typ")
 )
 
-// This file gathers doc-comments in the source code, located in src/
 
 = Copyright
 
