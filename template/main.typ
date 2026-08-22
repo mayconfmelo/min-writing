@@ -1,6 +1,5 @@
-#import "@preview/min-writing:0.0.0": writing, mark, boxed, mermaid
+#import "@preview/min-writing:0.0.0": writing, mark, boxed, mermaid, figure
 
-#set text(lang: "pt")
 #set document(
   title: "Minimal Writings",
   author: "mayconfmelo",
@@ -68,8 +67,16 @@ graph TD
 
 #mark[Mark]
 #boxed[Boxed]
+
 #mermaid(```
   graph TD
     A[Start] --> B[End]
 ```)
+
+#figure(
+  caption: "Caption",
+  source: "Source",
+  rect(),
+)
+
 #pagebreak() // turns into #divider in #writing(paged) mode

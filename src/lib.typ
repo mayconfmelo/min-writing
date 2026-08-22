@@ -1,4 +1,4 @@
-#import "cmd.typ": mark, boxed, mermaid
+#import "cmd.typ": mark, boxed, mermaid, figure
 
 #let writing(
   syntax: true,
@@ -13,6 +13,7 @@
   import "@preview/nexus-tools:0.3.0": default, storage
   import "util.typ": defaults, custom-divider
   import "syntax.typ" as syntax-init
+  import "cmd.typ": original
   
   let default = default.with(not custom-styling)
   let flavor = get-flavor(catppuccin-flavor)
@@ -124,8 +125,7 @@
   )
   show divider: custom-divider.with(color: flavor.colors.subtext0.rgb)
   show footnote: set line(stroke: 1pt + flavor.colors.subtext0.rgb)
-  show figure.caption: set text(size: 1em - 2pt)
-  show figure: set figure.caption(position: top)
+  show original.figure.caption: set text(size: 1em - 2pt)
   show footnote.entry: set text(size: font-size - 2pt)
   show heading.where(numbering: none): set align(center)
   show math.equation.where(block: true): set math.equation(numbering: "(1)")

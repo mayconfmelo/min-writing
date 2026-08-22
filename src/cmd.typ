@@ -1,5 +1,18 @@
-#let figure(source: none, ..args, body) = {
+#let original = (figure: figure, align: align)
+
+#let figure(source: none, align: center, ..args, body) = context {
+  set original.figure.caption(position: top)
   
+  show block: set original.align(align)
+  
+  block({
+    set original.align(center)
+    
+    (original.figure)(..args, body)
+    
+    v(-par.leading)
+    text(source, size: 1em - 2pt)
+  })
 }
 
 
