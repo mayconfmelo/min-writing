@@ -4,9 +4,9 @@ version = "0.0.0" #"0.0.0" #"0.1.0"
 entrypoint = "src/lib.typ"
 authors = ["Maycon F. Melo <@mayconfmelo>"]
 license = "MIT-0"
-description = "Simple and basic general purpose anotations"
+description = "Simple and basic general purpose annotations"
 categories = [ "layout", "office" ]
-keywords = [ "quick writing", "note", "anotation", "mobile" ]
+keywords = [ "quick writing", "note", "annotation", "mobile" ]
 repository = "https://github.com/mayconfmelo/min-writing"
 exclude = [
   "dev/",

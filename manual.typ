@@ -1,7 +1,7 @@
 #import "@preview/min-manual:0.3.0": manual
 
 #show: manual.with(
-  title: "Mininal Writings",
+  title: "Minimal Writings",
   logo: image("docs/assets/manual-logo.png"),
   manifest: toml("typst.toml"),
   from-comments: read("src/lib.typ")

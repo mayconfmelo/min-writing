@@ -3,7 +3,7 @@
 <div align="center">
 
 <p class="hidden">
-  Simple and basic general purpose anotations 
+  Simple and basic general purpose annotations 
 </p>
 
 <p class="hidden">
