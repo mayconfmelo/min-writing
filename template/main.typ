@@ -1,74 +1,75 @@
-#import "@preview/min-writing:0.0.0": writing, mark, boxed
+#import "@preview/min-writing:0.0.0": writing, mark, boxed, mermaid
 
+#set text(lang: "pt")
 #set document(
-  title: "Writing",
+  title: "Minimal Writings",
   author: "mayconfmelo",
+  description: [
+    This example is in quick-note mode, where all content appears on a single, narrow page.
+    It can also be set to classic paginated mode.
+  ],
 )
 
 #show: writing
 
-#lorem(50)
+[TOC]
 
-#lorem(50)
 
-= Level 1
+= Syntax
 
-== Level 2
+|= Unnumbered level 1
 
-=== Level 3
+|== Unnumbered level 2
 
-==== Level 4
+|=== Unnumbered level 3
 
-===== Level 5
+|==== Unnumbered level 4
 
-====== Level 6
+|===== Unnumbered level 5
 
-#lorem(50)
+|====== Unnumbered level 6
 
-|= Level 1
-
-|== Level 2
-
-|=== Level 3
-
-|==== Level 4
-
-|===== Level 5
-
-|====== Level 6
-
-Lorem """inline quotation""" ipsum dolor sit amet.
-
-> Block *quotation*.
-> Foo
-> — Attibution
-
-> a b
-
-foo \\\\ bar
-
-#table(
-  columns: 2,
-  lorem(4), lorem(4),
-  lorem(4), lorem(4),
-  lorem(4), lorem(4)
-)
-
-=Mark=
-:Boxed:
-::Underline::
+*Strong*
+_Emphasis_
+`Monospaced`
+=Marked=
+::Boxed::
+:::Underline:::
 ~~Strikethrough~~
-[^Footnote *a*]
+[^This is a footnote]
+
+This is an """inline quotation""".
+
+> This is a block quotation.
+> — Attribution
+
+| *Centered* | *Left*    | *Right* | *None* |
+| :--------: | :-------- | ------: | ------ |
+| AAAA       | AAAA      | AAAA    | AAAA   |
+| AAA        | AAA       | AAA     | AAA    |
+
+This is a paragraph. \\\\ This is another paragraph. \\\\\\ This is in another page (when paged)
+
+```mermaid
+graph TD
+    A[Start] --> B[End]
+```
+
+-----
+
+- [ ] Item
+- [X] Item
+- [/] Item
+- [-] Item
+- [!] Item
+
+
+= Commands
 
 #mark[Mark]
 #boxed[Boxed]
-#underline[=Underline=]
-#strike[Strikethrough]
-#footnote[Footnote *b*]
-#rect[Rect]
-
-#pagebreak()
-
-#lorem(50)
-
-#divider()
+#mermaid(```
+  graph TD
+    A[Start] --> B[End]
+```)
+#pagebreak() // turns into #divider in #writing(paged) mode

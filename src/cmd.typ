@@ -1,4 +1,5 @@
-#let figure() = {
+#let figure(source: none, ..args, body) = {
+  
 }
 
 
@@ -10,14 +11,12 @@
   if fill == auto {
     import "@preview/nexus-tools:0.3.0": storage
     
-    let catppuccin-flavor = storage.get("catppuccin-flavor", namespace: "min-writing")
-    let flavor = get-flavor(catppuccin-flavor)
-    
-    fill = flavor.colors.mauve.rgb
+    fill = storage.get("accent-color", gray, namespace: "min-writing")
   }
   
-  box(body, fill: fill, outset: (y: 2pt), inset: (x: 2pt))
+  box(body, fill: fill.transparentize(50%), outset: (y: 2pt), inset: (x: 2pt))
 }
+
 
 #let boxed(stroke: auto, body) = context {
   import "@preview/catppuccin:1.1.0": get-flavor
@@ -27,17 +26,15 @@
   if stroke == auto {
     import "@preview/nexus-tools:0.3.0": storage
     
-    let catppuccin-flavor = storage.get("catppuccin-flavor", namespace: "min-writing")
-    let flavor = get-flavor(catppuccin-flavor)
-    
-    stroke = flavor.colors.mauve.rgb
+    stroke = storage.get("accent-color", gray, namespace: "min-writing")
   }
   
   box(body, stroke: stroke, outset: (y: 2pt), inset: (x: 2pt))
 }
 
 
-
-#let strikethrough() = {
+#let mermaid(..args) = {
+  import "@preview/oxdraw:0.1.0": oxdraw
   
+  oxdraw(..args)
 }

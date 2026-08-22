@@ -33,7 +33,17 @@
 ## Quick Start
 
 ```typst
-#import "@preview/min-writing:0.1.0": book
+#import "@preview/min-writing:0.1.0": writing
+
+#set document(
+  title: "Title",
+  author: "Author",
+  description: "Description",
+)
+
+#show: writing
+
+// Write typst with expanded syntax (see manual)
 ```
 
 
@@ -42,7 +52,37 @@
 
 ## Feature List
 
+- Quick-note mode (ignore page breaks)
+- Extended syntax sugar
+  - Unnumbered headings
+  - Marked texts
+  - Boxed texts
+  - Inline quotes
+  - Block quotes
+  - Tables
+  - Paragraph breaks
+  - Page breaks
+  - Mermaid diagrams
+  - Dividers
+  - Check lists
+- Additional commands
+  - Marked texts
+  - Boxed texts
+  - Mermaid diagrams
+- Catppuccin colors
+- Embedded help page
 
 
 ## Default Fonts
 
+**Text:**
+[TeX Gyre Heros](https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros/qhv2.004otf.zip) or
+Arial
+
+**Headings:**
+[TeX Gyre Adventor](https://www.gust.org.pl/projects/e-foundry/tex-gyre/adventor/qag2_501otf.zip) or 
+Century Gothic
+
+**Mono:**
+[Fira Mono](https://fonts.google.com/specimen/Fira+Mono) or
+[Inconsolata](https://fonts.google.com/specimen/Inconsolata)
