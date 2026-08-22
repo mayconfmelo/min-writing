@@ -1,23 +1,21 @@
 [package]
 name = "min-writing"
-version = "0.0.0" #"0.0.0" #"0.1.0"
+version = "0.0.0" #"0.1.0"
 entrypoint = "src/lib.typ"
 authors = ["Maycon F. Melo <@mayconfmelo>"]
 license = "MIT-0"
-description = "Simple and basic general purpose annotations"
+description = "Quick and simple general-purpose notes with extended syntax"
 categories = [ "layout", "office" ]
 keywords = [ "quick writing", "note", "annotation", "mobile" ]
 repository = "https://github.com/mayconfmelo/min-writing"
 exclude = [
   "dev/",
-  "test/",
+  "tests/",
   "docs/",
   "scripts/",
   ".git",
   ".gitignore",
   "justfile",
-  "CHANGELOG.md",
-  "SETUP.md",
   "manual.typ"
 ]
 

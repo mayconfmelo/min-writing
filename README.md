@@ -3,7 +3,7 @@
 <div align="center">
 
 <p class="hidden">
-  Simple and basic general purpose annotations 
+  Quick and simple general-purpose notes with extended syntax
 </p>
 
 <p class="hidden">
@@ -69,6 +69,7 @@
   - Marked texts
   - Boxed texts
   - Mermaid diagrams
+  - Figures (with source)
 - Catppuccin colors
 - Embedded help page
 
