@@ -1,0 +1,31 @@
+name: Spellcheck
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+    branches: [ main, dev ]
+
+jobs:
+  codespell:
+    name: Codespell check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Python 3.12.9
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.12.9
+      - name: Install codespell
+        run: |
+          python -m pip install --upgrade pip
+          pip install codespell
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Setup just
+        uses: extractions/setup-just@v4
+      - name: Run check
+        run: just spell
