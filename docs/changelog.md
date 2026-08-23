@@ -1,14 +1,21 @@
 # 0.1.0
 
-- Document modes
-  - `"mobile"` mode turns page dark, bigger text and small single text-wide page
-  - `"screen"` mode turns page dark, and set a single text-wide page
-  - `"print"` mode renders the standard document style, fit to be printed on paper
-- Automatic glossary generation
-  - Abbreviation management with `#abbrev`
-  - Glosary term management with `#gloss`
-- Horizontal rules (visual text separators)
-- `#blockquote`, a wrapper for `#quote(block: true)`
-- Easy way to document command arguments/options/parameters with `#arg`
-- All-parts-detachable philosophy: each feature can also be imported sepparatedly
-  and used on its own
+- Quick-note mode (no page breaks)
+- Extended syntax sugar
+  - Unnumbered headings
+  - Highlighted texts
+  - Boxed texts
+  - Inline quotes
+  - Block quotes
+  - Tables
+  - Paragraph breaks
+  - Page breaks
+  - Mermaid diagrams
+  - Dividers
+  - Check lists
+- Additional commands
+  - `#boxed` for boxed texts
+  - `#mermaid` for Mermaid diagrams
+  - Custom `#figure` with support for source
+- Catppuccin colors
+- Embedded help page
