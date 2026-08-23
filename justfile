@@ -18,7 +18,7 @@ remove target="preview":
   
 # run package tests.
 test which="":
-  tt run {{which}}
+  tt run {{which}} --font-path="tests/font/"
   
 # compile the example file.
 example:
