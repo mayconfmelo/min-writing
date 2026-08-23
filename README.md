@@ -59,7 +59,7 @@ features—yet it still offers various options for fine-tuning.
 
 ## Feature List
 
-- Quick-note mode (ignore page breaks)
+- Quick-note mode (no page breaks)
 - Extended syntax sugar
   - Unnumbered headings
   - Highlighted texts
