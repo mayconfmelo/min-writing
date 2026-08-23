@@ -5,10 +5,10 @@
   date: datetime(year: 2026, month: 8, day: 23)
 )
 
-#show: writing.with(paged: true, custom-styling: false)
+#show: writing.with(paged: false, custom-styling: false)
 
 #lorem(50)
 
-#pagebreak() // acts like a proper page break
+#pagebreak() // turns into #divider in quick-note (not paged) mode
 
 #lorem(50)
