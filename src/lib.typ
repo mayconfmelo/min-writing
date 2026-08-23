@@ -37,11 +37,11 @@ features—yet it still offers various options for fine-tuning.
   custom-styling: true, /// <- boolean
     /// Enable custom styles and formatting. |
   catppuccin-flavor: "mocha", /// <- string
-    /// Set catppuccin color flavor: ("mocha", "frappe", "latte").map(underline). |
+    /// Set catppuccin color flavor: #("mocha", "frappe", "latte").map(underline).join(", "). |
   accent-color: auto, /// <- auto | color
     /// Set accent color. |
   help: false, /// <- boolean
-    /// Enable quick help at the last page. |
+    /// Enable quick help at the first page. |
   body
 ) = context {
   import "@preview/catppuccin:1.1.0": catppuccin, get-flavor

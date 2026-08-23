@@ -1,4 +1,4 @@
-#import "@preview/min-writing:0.0.0": writing, boxed, mermaid, figure
+#import "@preview/min-writing:0.1.0": writing, boxed, mermaid, figure
 
 #set document(
   title: "Minimal Writings",
