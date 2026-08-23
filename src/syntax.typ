@@ -1,7 +1,10 @@
-/// = Extended syntax
-/// This syntax is supported when `#writing(syntax)` is `true`.
-
 /**
+= Extended syntax
+This syntax is supported when `#writing(syntax)` is `true`. It is implemented in Typst itself,
+using some deep Typst wizardry, and consequently, there are some limitations to its use.
+Known limitations will be mentioned in this documentation.
+
+
 == Unnumbered headings
 ```typst
 |= Level 1
@@ -268,7 +271,6 @@ The word _"toc"_ is case-insensitive.
 | :------: | :------- | -------: |
 | Cell     | Cell     | Cell     |
 | Cell     | Cell     | <        |
-
 ```
 This Markdown-inspired syntax is provided by~#univ("tablem") package.
 **/
