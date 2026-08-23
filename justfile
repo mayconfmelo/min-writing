@@ -54,7 +54,7 @@ spell correct="no":
     arg="--interactive 3 --write-changes"
   fi
   codespell $arg \
-    --skip "*.pdf,./dev/*,.git/*,./docs/example/lang/*" \
+    --skip "*.pdf,./dev/*,.git/*,./docs/assets/thumbnail.typ" \
     --ignore-words-list "heros"
 
 # build typst plugin.
@@ -99,6 +99,8 @@ build:
 deploy:
   #!/usr/bin/env bash
   bash scripts/version.sh "{{version}}" "{{root}}"
+  
+  typst c docs/assets/thumbnail.typ "{{root}}/thumbnail.png"
   
   cd ../packages
   git checkout -b main
