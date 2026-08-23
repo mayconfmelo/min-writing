@@ -7,7 +7,7 @@
   width: 15cm,
   header: align(right)[_`min-writing` help_]
 )
-#set par(spacing: 2em)
+#set par(spacing: 3em)
 #set text(font: ("tex gyre heros", "arial"))
 
 
@@ -48,7 +48,8 @@ Lorem """ipsum""" dolor sit amet.
 ```eg
 One paragraph. \\\\ Another paragraph.
 \\\\\\
-Paragraph on a new page.
+Paragraph on a new page\
+or after divider in paged mode
 ```
 
 ```eg

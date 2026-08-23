@@ -32,9 +32,9 @@ interpreted as part of the heading.
     
     assert.ne(level, 0, message: "min-writing failed to parse syntax")
     
-    v(1.5em)
+    v(par.spacing)
     box(circle()) * level
-    v(-1.5em)
+    v(0.32em, weak: true)
     
     heading(
       title,

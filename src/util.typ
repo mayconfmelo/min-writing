@@ -1,3 +1,5 @@
+#import "@preview/nexus-tools:0.3.0": default
+
 #let defaults = (
   heading: (numbering: none),
   text: (

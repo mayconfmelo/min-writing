@@ -35,7 +35,7 @@ features—yet it still offers various options for fine-tuning.
   paged: false, /// <- boolean
     /// Enable classical paged mode (disable for quick-note mode). |
   custom-styling: true, /// <- boolean
-    /// Enable custom styles abd formatting. |
+    /// Enable custom styles and formatting. |
   catppuccin-flavor: "mocha", /// <- string
     /// Set catppuccin color flavor: ("mocha", "frappe", "latte").map(underline). |
   accent-color: auto, /// <- auto | color
@@ -46,13 +46,14 @@ features—yet it still offers various options for fine-tuning.
 ) = context {
   import "@preview/catppuccin:1.1.0": catppuccin, get-flavor
   import "@preview/nexus-tools:0.3.0": default, storage
-  import "util.typ": defaults, custom-divider
+  import "util.typ" as util: defaults, custom-divider
   import "syntax.typ" as syntax-init
   import "cmd.typ": original
   
   let default = default.with(not custom-styling)
   let flavor = get-flavor(catppuccin-flavor)
   let accent-color = if accent-color == auto {flavor.colors.mauve.rgb} else {accent-color}
+  let sub-text = if custom-styling {flavor.colors.subtext0.rgb} else {text.fill}
   let font-size = text.size
   let body = body
   
@@ -62,24 +63,30 @@ features—yet it still offers various options for fine-tuning.
   if help {include "help.typ"}
   
   set page(
-    ..default(
-      when: not paged and page.margin == defaults.page.margin,
+    ..util.default(
+      when: page.margin == defaults.page.margin,
       value: (margin: (x: 2em, y: 3em)),
+      paged
     ),
-    ..default(
-      when: not paged and repr(page.width) == defaults.page.width,
+    ..util.default(
+      when: repr(page.width) == defaults.page.width,
       value: (width: 26em),
+      paged
     ),
-    ..default(
-      when: not paged and repr(page.height) == defaults.page.height,
+    ..util.default(
+      when: repr(page.height) == defaults.page.height,
       value: (height: auto),
+      paged
     ),
     header: context if locate(here()).page() > 1 {
       set align(right)
       text(
         document.title,
         style: "italic",
-        fill: flavor.colors.subtext0.rgb,
+        ..default(
+          when: true,
+          value: (fill: sub-text),
+        ),
       )
     },
     footer: {
@@ -87,7 +94,10 @@ features—yet it still offers various options for fine-tuning.
       text(
         counter(page).display("1/1", both: true),
         style: "italic",
-        fill: flavor.colors.subtext0.rgb,
+        ..default(
+          when: true,
+          value: (fill: sub-text),
+        ),
       )
     },
   )
@@ -106,7 +116,7 @@ features—yet it still offers various options for fine-tuning.
   set table(
     ..default(
       when: repr(table.stroke) == defaults.table.stroke,
-      value: (stroke: 1pt + flavor.colors.crust.rgb),
+      value: (stroke: 1pt + sub-text),
     ),
     ..default(
       when: table.fill == defaults.table.fill,
@@ -133,7 +143,7 @@ features—yet it still offers various options for fine-tuning.
   )
   set par(justify: true)
   set terms(separator: [: ], tight: true)
-  set footnote.entry(separator: line(length: 30% + 0pt, stroke: 0.05em + flavor.colors.subtext0.rgb))
+  set footnote.entry(separator: line(length: 30% + 0pt, stroke: 0.05em + sub-text))
   
   show heading: it => {
     set text(
@@ -161,8 +171,8 @@ features—yet it still offers various options for fine-tuning.
     it.element.location(),
     it.indented(it.prefix(), it.body()),
   )
-  show divider: custom-divider.with(color: flavor.colors.subtext0.rgb)
-  show footnote: set line(stroke: 1pt + flavor.colors.subtext0.rgb)
+  show divider: custom-divider.with(color: sub-text)
+  show footnote: set line(stroke: 1pt + sub-text)
   show original.figure.caption: set text(size: 1em - 2pt)
   show footnote.entry: set text(size: font-size - 2pt)
   show heading.where(numbering: none): set align(center)
@@ -170,7 +180,7 @@ features—yet it still offers various options for fine-tuning.
   show quote.where(block: true): it => pad(x: 1em, it)
   show raw.where(block: true): it => pad(left: 1em, it)
   show bibliography: bibliography.with(style: "associacao-brasileira-de-normas-tecnicas")
-  show: it => if custom-styling {catppuccin(flavor, it)} else {body} // set document styling
+  show: it => if custom-styling {catppuccin(flavor, it)} else {it} // set document styling
   show: syntax-init.unnumbered-headings.with(enable: syntax)
   show: syntax-init.quotes.with(enable: syntax)
   show: syntax-init.breaks.with(enable: syntax, paged: paged)
@@ -218,9 +228,11 @@ features—yet it still offers various options for fine-tuning.
   if header-data.len() > 0 {
     set align(center)
     
+    let alignment = if header-data.len() > 1 {(left, right)} else {center}
+    
     grid(
       columns: (1fr,) * header-data.len(),
-      align: (left, right),
+      align: alignment,
       ..header-data,
     )
   }
@@ -229,7 +241,11 @@ features—yet it still offers various options for fine-tuning.
   if document.description != none {
     set align(center)
     
-    block(document.description, width: 90%, above: par.spacing)
+    block(
+      document.description,
+      width: 90%,
+      above: par.spacing
+    )
     
     v(1em)
   }
