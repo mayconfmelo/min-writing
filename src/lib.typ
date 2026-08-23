@@ -31,7 +31,7 @@ features—yet it still offers various options for fine-tuning.
 **/
 #let writing(
   syntax: true, /// <- boolean
-    /// Enable additional syntatic sugar (extended syntax). |
+    /// Enable additional syntactic sugar (extended syntax). |
   paged: false, /// <- boolean
     /// Enable classical paged mode (disable for quick-note mode). |
   custom-styling: true, /// <- boolean
