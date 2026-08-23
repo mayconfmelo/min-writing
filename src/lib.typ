@@ -60,7 +60,11 @@ features—yet it still offers various options for fine-tuning.
   storage.add("accent-color", accent-color, namespace: "min-writing")
   
   // Generate quick help page at the end of the document
-  if help {include "help.typ"}
+  if help {
+    set text(font: ("tex gyre heros", "arial"))
+    
+    include "help.typ"
+  }
   
   set page(
     ..util.default(

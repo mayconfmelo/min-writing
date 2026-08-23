@@ -8,8 +8,6 @@
   header: align(right)[_`min-writing` help_]
 )
 #set par(spacing: 3em)
-#set text(font: ("tex gyre heros", "arial"))
-
 
 // Visualize code and evaluate result
 #show raw.where(lang: "eg"): it => {
