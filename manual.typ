@@ -4,7 +4,10 @@
   title: "Minimal Writings",
   logo: image("docs/assets/manual-logo.png"),
   manifest: toml("typst.toml"),
-  from-comments: read("src/lib.typ")
+  from-comments:
+    read("src/lib.typ") +
+    read("src/cmd.typ") +
+    read("src/syntax.typ"),
 )
 
 

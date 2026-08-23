@@ -48,6 +48,13 @@
 
 
 ## Description
+Create quick notes intuitively and rapidly, using syntactic sugar that extends the markup supported by Typst.
+By default, new documents are created in quick-note mode—which ignores page breaks and optimizes the layout
+for screens—though you can also select the classic paged mode.
+
+This package was designed to make creating documents as easy as possible, without requiring extensive initial
+configuration—in fact, you simply need to import the package and apply the `#show` rule to access its
+features—yet it still offers various options for fine-tuning.
 
 
 ## Feature List

@@ -24,14 +24,35 @@
     set line(stroke: 1pt + color)
     set circle(fill: color)
     
-    v(1em)
-    (
+    let self = (
       line(length: 20%),
       circle(radius: 1pt),
       circle(radius: 2pt),
       circle(radius: 1pt),
       line(length: 20%),
-    ).map(box.with(inset: (x: 2pt))).join()
+    )
+    
+    v(1em)
+    
+    self.map(box.with(inset: (x: 2pt))).join()
+    
     v(1em)
   }
+}
+
+
+#let syntax-init(body) = {
+  import "syntax.typ"
+  
+  show: syntax.unnumbered-headings
+  show: syntax.quotes
+  show: syntax.breaks
+  show: syntax.inline
+  show: syntax.check-lists
+  show: syntax.dividers
+  show: syntax.toc
+  show: syntax.tables
+  show: syntax.mermaid
+  
+  body
 }

@@ -1,12 +1,47 @@
 #import "cmd.typ": mark, boxed, mermaid, figure
 
+
+/** #v(1fr) #outline() #v(1.2fr) #pagebreak()
+= Quick Start
+```typst
+#import "@preview/min-writing:0.1.0": writing
+
+#set document(
+  title: "Title",
+  author: "Author",
+  description: "Description",
+)
+
+#show: writing
+
+// Write typst with expanded syntax (see manual)
+```
+
+= Description
+Create quick notes intuitively and rapidly, using syntactic sugar that extends the markup supported by Typst.
+By default, new documents are created in quick-note mode—which ignores page breaks and optimizes the layout
+for screens—though you can also select the classic paged mode.
+
+This package was designed to make creating documents as easy as possible, without requiring extensive initial
+configuration—in fact, you simply need to import the package and apply the `#show` rule to access its
+features—yet it still offers various options for fine-tuning.
+
+= Options
+:show.with writing:
+**/
 #let writing(
-  syntax: true,
-  paged: false,
-  custom-styling: true,
-  catppuccin-flavor: "mocha",
-  accent-color: auto,
-  help: false,
+  syntax: true, /// <- boolean
+    /// Enable additional syntatic sugar (extended syntax). |
+  paged: false, /// <- boolean
+    /// Enable classical paged mode (disable for quick-note mode). |
+  custom-styling: true, /// <- boolean
+    /// Enable custom styles abd formatting. |
+  catppuccin-flavor: "mocha", /// <- string
+    /// Set catppuccin color flavor: ("mocha", "frappe", "latte").map(underline). |
+  accent-color: auto, /// <- auto | color
+    /// Set accent color. |
+  help: false, /// <- boolean
+    /// Enable quick help at the last page. |
   body
 ) = context {
   import "@preview/catppuccin:1.1.0": catppuccin, get-flavor
@@ -22,6 +57,9 @@
   let body = body
   
   storage.add("accent-color", accent-color, namespace: "min-writing")
+  
+  // Generate quick help page at the end of the document
+  if help {include "help.typ"}
   
   set page(
     ..default(
@@ -143,7 +181,7 @@
   show: syntax-init.tables.with(enable: syntax)
   show: syntax-init.mermaid.with(enable: syntax)
   
-  // Ignore #pagebreak
+  // Handle #pagebreak
   if not paged {
     body = body.children.map(elem => if elem.func() == pagebreak {divider()} else {elem}).join()
   }
@@ -187,6 +225,7 @@
     )
   }
   
+  // Document description
   if document.description != none {
     set align(center)
     
@@ -196,20 +235,4 @@
   }
   
   body
-  
-  if help {
-    import "@preview/min-manual:0.3.0": example, arg
-    import "lib.typ"
-    
-    set page(
-      height: auto,
-      header: align(right)[_`min-writing` help_]
-    )
-    
-    let example = example.with(source: dictionary(lib))
-    
-    example(```
-      strike
-    ```)
-  }
 }

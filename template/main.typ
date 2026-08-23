@@ -40,7 +40,7 @@ _Emphasis_
 This is an """inline quotation""".
 
 > This is a block quotation.
-> — Attribution
+> --- Attribution
 
 | *Centered* | *Left*    | *Right* | *None* |
 | :--------: | :-------- | ------: | ------ |
@@ -51,7 +51,7 @@ This is a paragraph. \\\\ This is another paragraph. \\\\\\ This is in another p
 
 ```mermaid
 graph TD
-    A[Start] --> B[End]
+    A[Start] --> B[Finish]
 ```
 
 -----

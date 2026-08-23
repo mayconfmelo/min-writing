@@ -1,6 +1,23 @@
+/// = Additional commands
+
 #let original = (figure: figure, align: align)
 
-#let figure(source: none, align: center, ..args, body) = context {
+
+/**
+=== Figure
+:figure:
+Adds the option to insert the figure source.
+**/
+#let figure(
+  source: none, /// <- content | string
+    /// Figure source. |
+  align: center, /// <- alignment
+    /// Align the figure. |
+  ..args, /// <- arguments
+    /// Any `#figure` options. |
+  body /// <- content
+    /// Figure content. |
+) = context {
   set original.figure.caption(position: top)
   
   show block: set original.align(align)
@@ -16,7 +33,17 @@
 }
 
 
-#let mark(fill: auto, body) = context {
+/**
+== Marked text
+:mark:
+Inserts colored text highlights.
+**/
+#let mark(
+  fill: auto, /// <- auto | color
+    /// Background color. |
+  body /// <- content | string
+    /// Text to be highlighted. |
+) = context {
   import "@preview/catppuccin:1.1.0": get-flavor
   
   let fill = fill
@@ -31,7 +58,17 @@
 }
 
 
-#let boxed(stroke: auto, body) = context {
+/**
+== Boxed text
+:boxed:
+Inserts inline text boxes.
+**/
+#let boxed(
+  stroke: auto, /// <- stroke
+    /// Set border stroke. |
+  body /// <- content | string
+    /// Text to be boxed. |
+) = context {
   import "@preview/catppuccin:1.1.0": get-flavor
   
   let stroke = stroke
@@ -46,8 +83,16 @@
 }
 
 
+/**
+== Mermaid diagrams
+:mermaid:
+Inserts Mermaid flowcharts and diagrams.
+
+..args <- arguments
+  Any~#univ("merman") options.
+**/
 #let mermaid(..args) = {
-  import "@preview/oxdraw:0.1.0": oxdraw
+  import "@preview/merman:0.1.0": mermaid
   
-  oxdraw(..args)
+  mermaid(..args)
 }
