@@ -62,7 +62,7 @@ features—yet it still offers various options for fine-tuning.
 - Quick-note mode (ignore page breaks)
 - Extended syntax sugar
   - Unnumbered headings
-  - Marked texts
+  - Highlighted texts
   - Boxed texts
   - Inline quotes
   - Block quotes
@@ -73,7 +73,6 @@ features—yet it still offers various options for fine-tuning.
   - Dividers
   - Check lists
 - Additional commands
-  - Marked texts
   - Boxed texts
   - Mermaid diagrams
   - Figures (with source)

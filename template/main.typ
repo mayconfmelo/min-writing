@@ -1,4 +1,4 @@
-#import "@preview/min-writing:0.0.0": writing, mark, boxed, mermaid, figure
+#import "@preview/min-writing:0.0.0": writing, boxed, mermaid, figure
 
 #set document(
   title: "Minimal Writings",
@@ -65,7 +65,6 @@ graph TD
 
 = Commands
 
-#mark[Mark]
 #boxed[Boxed]
 
 #mermaid(```

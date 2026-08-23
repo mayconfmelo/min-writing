@@ -4,7 +4,7 @@
 
 #show: inline.with(enable: true)
 
-=Marked=
+=Highlight=
 ::Boxed::
 :::Underline:::
 ~~Strikethrough~~

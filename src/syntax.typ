@@ -113,14 +113,14 @@ Paragraph on a new page.
 /**
 == Inline formatting
 ```typst
-=Marked=
+=Highlight=
 ​::Boxed::
 ​:::Underline:::
 ~~Strikethrough~~
 [^This is a footnote]
 ```
 These markups have very limited support for parsing other markups internally: it is possible
-to have a strikethrough inside a marked text, for example, but nesting markups beyond that
+to have a strikethrough inside a highlighted text, for example, but nesting markups beyond that
 is not possible.
 **/
 #let inline(enable: true, accent-color: gray, body) = context {
@@ -155,11 +155,9 @@ is not possible.
   
   // Marker
   show regex("=.+?="): it => {
-    import "cmd.typ": mark
-    
     show "=": ""
     
-    mark(it, fill: accent-color)
+    highlight(it, fill: accent-color)
   }
   
   // Box

@@ -2,7 +2,6 @@
 
 #let original = (figure: figure, align: align)
 
-
 /**
 === Figure
 :figure:
@@ -30,31 +29,6 @@ Adds the option to insert the figure source.
     v(-par.leading)
     text(source, size: 1em - 2pt)
   })
-}
-
-
-/**
-== Marked text
-:mark:
-Inserts colored text highlights.
-**/
-#let mark(
-  fill: auto, /// <- auto | color
-    /// Background color. |
-  body /// <- content | string
-    /// Text to be highlighted. |
-) = context {
-  import "@preview/catppuccin:1.1.0": get-flavor
-  
-  let fill = fill
-  
-  if fill == auto {
-    import "@preview/nexus-tools:0.3.0": storage
-    
-    fill = storage.get("accent-color", gray, namespace: "min-writing")
-  }
-  
-  box(body, fill: fill.transparentize(50%), outset: (y: 2pt), inset: (x: 2pt))
 }
 
 

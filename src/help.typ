@@ -51,7 +51,7 @@ or after divider in paged mode
 ```
 
 ```eg
-=Marked=
+=Highlight=
 ​::Boxed::
 ​:::Underline:::
 ~~Strikethrough~~
@@ -98,10 +98,6 @@ graph TD
 
 
 = Commands
-
-```eg
-#mark[Mark]
-```
 
 ```eg
 #boxed[Boxed]

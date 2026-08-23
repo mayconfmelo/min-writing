@@ -1,4 +1,4 @@
-#import "cmd.typ": mark, boxed, mermaid, figure
+#import "cmd.typ": boxed, mermaid, figure
 
 
 /** #v(1fr) #outline() #v(1.2fr) #pagebreak()
@@ -148,6 +148,7 @@ features—yet it still offers various options for fine-tuning.
   set par(justify: true)
   set terms(separator: [: ], tight: true)
   set footnote.entry(separator: line(length: 30% + 0pt, stroke: 0.05em + sub-text))
+  set highlight(extent: 1pt)
   
   show heading: it => {
     set text(
