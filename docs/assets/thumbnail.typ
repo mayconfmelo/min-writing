@@ -39,4 +39,4 @@ Donec commodo leo mi, vitae rhoncus nibh tincidunt at.] commodo tempor metus urn
 > Integer sed ornare felis, et scelerisque sapien. Nam a tellus mi.
 > --- Curabitur accumsan
 
-#lorem(60)
+#lorem(50)
