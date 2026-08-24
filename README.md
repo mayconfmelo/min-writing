@@ -16,8 +16,8 @@
 [![Get Manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/manual.pdf)
 [![Example PDF](https://img.shields.io/badge/Example-.pdf-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/example.pdf)
 [![Example source code](https://img.shields.io/badge/Example-.typ-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/min-writing/blob/0.1.0/template/main.typ)
-[![Changelog file](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/changelog.md)
-[![Contribute with development](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/min-writing/refs/tags/0.1.0/docs/contributing.md)
+[![Changelog file](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/min-writing/blob/0.1.0/docs/changelog.md)
+[![Contribute with development](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/min-writing/blob/0.1.0/docs/contributing.md)
 
 <p class="hidden">
   <a href="https://github.com/mayconfmelo/min-writing/actions/workflows/tests.yml">
