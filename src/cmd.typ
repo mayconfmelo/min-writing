@@ -3,7 +3,7 @@
 #let original = (figure: figure, align: align)
 
 /**
-=== Figure
+== Figure
 :figure:
 Adds the option to insert the figure source.
 **/
